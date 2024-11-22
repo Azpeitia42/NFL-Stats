@@ -1,7 +1,12 @@
+.teams-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
 .team-card {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   margin: 8px 0;
@@ -10,7 +15,7 @@
 }
 
 .team-logo img {
-  width: 80px; /* Ajusta el tamaño del logo */
+  width: 80px;
   height: 80px;
   margin-right: 16px;
   border-radius: 8px;
@@ -18,8 +23,27 @@
 }
 
 .team-info {
-  flex-grow: 1; /* Asegura que el texto ocupe el espacio disponible */
+  flex-grow: 1;
+  .blackButton{
+    background: red;
+    border: none;
+    color: white;
+    margin-right: 3rem;
+    border-radius: 1rem;
+    height: fit-content;
+    padding: 0.5rem;
+  }
+  .blackButton:hover{
+    background: white;
+    border: none;
+    color: black;
+    margin-right: 3rem;
+    border-radius:1rem;
+    height: fit-content;
+    padding: 0.5rem;
+  }
 }
+
 
 h1 {
   text-align: center;
@@ -76,6 +100,11 @@ p {
   text-align: left;
   max-height: 80vh; /* Limita la altura del modal */
   overflow-y: auto; /* Agrega scroll vertical cuando el contenido excede la altura */
+  .modal-text{
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  }
 }
 
 /* Botón para cerrar el modal */
@@ -96,6 +125,12 @@ p {
 
 h3 {
   margin-top: 0;
+  background-color: rgb(82, 82, 92);
+  color: white;
+  width: fit-content;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.5rem;
 }
 
 

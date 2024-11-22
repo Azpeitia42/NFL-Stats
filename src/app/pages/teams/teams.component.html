@@ -1,18 +1,27 @@
-<div *ngFor="let team of teams" class="team-card">
-  <div class="team-logo">
-    <img [src]="team.nflComLogo1" alt="{{ team.teamName }} Logo" />
-  </div>
+<div class="teams-grid">
+  <div *ngFor="let team of teams" class="team-card">
+    <div class="team-logo">
+      <img [src]="team.nflComLogo1" alt="{{ team.teamName }} Logo" />
+    </div>
 
-  <div class="team-info">
-    <h2>{{ team.teamName }} ({{ team.teamAbv }})</h2>
-    <p>Ciudad: {{ team.teamCity }}</p>
-    <p>Conferencia: {{ team.conferenceAbv }}</p>
-    <p>División: {{ team.division }}</p>
-    <p>Racha actual: {{ team.currentStreak.result }} ({{ team.currentStreak.length }} juegos)</p>
-    <p>Récord: W: {{ team.wins }} L: {{ team.loss }}</p>
+    <div class="team-info">
+      <h2>{{ team.teamName }} ({{ team.teamAbv }})</h2>
+      <p>Ciudad: {{ team.teamCity }}</p>
+      <p>Conferencia: {{ team.conferenceAbv }}</p>
+      <p>División: {{ team.division }}</p>
+      <p>
+        Racha actual: {{ team.currentStreak.result }} ({{
+          team.currentStreak.length
+        }}
+        juegos)
+      </p>
+      <p>Récord: W: {{ team.wins }} L: {{ team.loss }}</p>
 
-    <!-- Botón para abrir el modal -->
-    <button (click)="openStatsModal(team)">Ver estadísticas</button>
+      <!-- Botón para abrir el modal -->
+      <button class="blackButton" (click)="openStatsModal(team)">
+        Ver estadísticas
+      </button>
+    </div>
   </div>
 </div>
 
@@ -20,37 +29,72 @@
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
     <span class="close" (click)="closeStatsModal()">&times;</span>
-    <h3>Estadísticas Temporada 2024</h3>
-    <p>Puntos a favor (PF): {{ selectedTeam?.pf }}</p>
-    <p>Puntos en contra (PA): {{ selectedTeam?.pa }}</p>
-    <p>Empates: {{ selectedTeam?.tie }}</p>
-    <h3>Estadísticas de Rushing</h3>
-    <p>Yardas por acarreo: {{ selectedTeam.teamStats?.Rushing?.rushYds }}</p>
-    <p>Acarreos: {{ selectedTeam.teamStats?.Rushing?.carries }}</p>
-    <p>Touchdowns de carrera: {{ selectedTeam.teamStats?.Rushing?.rushTD }}</p>
-    <h3>Estadísticas de Kicking</h3>
-    <p>Intentos Gol de Campo: {{ selectedTeam.teamStats?.Kicking?.fgAttempts }}</p>
-    <p>Hechos: {{ selectedTeam.teamStats?.Kicking?.fgMade }}</p>
-    <h3>Estadísticas de Passings</h3>
-    <p>Intentos de Pase: {{ selectedTeam.teamStats?.Passing?.passAttempts }}</p>
-    <p>Pases Touchdowns: {{ selectedTeam.teamStats?.Passing?.passTD }}</p>
-    <p>Yardas en Pases: {{ selectedTeam.teamStats?.Passing?.passYds }}</p>
-    <p>Pases Completos: {{ selectedTeam.teamStats?.Passing?.passCompletations }}</p>
-    <h3>Estadísticas de Punting</h3>
-    <p>Yardas en Patadas de Despeje: {{ selectedTeam.teamStats?.Punting?.puntYds }}</p>
-    <h3>Estadísticas de Receiving</h3>
-    <p>Recepciones: {{ selectedTeam.teamStats?.Receiving?.receptions }}</p>
-    <p>TD en Recepciones: {{ selectedTeam.teamStats?.Receiving?.recTD }}</p>
-    <p>Yardas en Recepciones: {{ selectedTeam.teamStats?.Receiving?.recYds }}</p>
-    <h3>Estadísticas de Defense</h3>
-    <p>Perdidas en Fumbles: {{ selectedTeam.teamStats?.Defense?.fumblesLost }}</p>
-    <p>TD en Defensa: {{ selectedTeam.teamStats?.Defense?.defTD }}</p>
-    <p>Fumbles causados: {{ selectedTeam.teamStats?.Defense?.fumbles }}</p>
-    <p>Intercepciones: {{ selectedTeam.teamStats?.Defense?.defensiveInterceptions }}</p>
-    <p>Tacleadas Totales: {{ selectedTeam.teamStats?.Defense?.totalTackles }}</p>
+    <div class="modal-text">
+      <div>
+        <h3>Estadísticas Temporada 2024</h3>
+        <p>Puntos a favor (PF): {{ selectedTeam?.pf }}</p>
+        <p>Puntos en contra (PA): {{ selectedTeam?.pa }}</p>
+        <p>Empates: {{ selectedTeam?.tie }}</p>
+      </div>
+      <div>
+        <h3>Estadísticas de Rushing</h3>
+        <p>
+          Yardas por acarreo: {{ selectedTeam.teamStats?.Rushing?.rushYds }}
+        </p>
+        <p>Acarreos: {{ selectedTeam.teamStats?.Rushing?.carries }}</p>
+        <p>
+          Touchdowns de carrera: {{ selectedTeam.teamStats?.Rushing?.rushTD }}
+        </p>
+      </div>
+      <div>
+        <h3>Estadísticas de Kicking</h3>
+        <p>
+          Intentos Gol de Campo:
+          {{ selectedTeam.teamStats?.Kicking?.fgAttempts }}
+        </p>
+        <p>Hechos: {{ selectedTeam.teamStats?.Kicking?.fgMade }}</p>
+      </div>
+      <div>
+        <h3>Estadísticas de Passings</h3>
+        <p>
+          Intentos de Pase: {{ selectedTeam.teamStats?.Passing?.passAttempts }}
+        </p>
+        <p>Pases Touchdowns: {{ selectedTeam.teamStats?.Passing?.passTD }}</p>
+        <p>Yardas en Pases: {{ selectedTeam.teamStats?.Passing?.passYds }}</p>
+        <p>
+          Pases Completos:
+          {{ selectedTeam.teamStats?.Passing?.passCompletations }}
+        </p>
+      </div>
+      <div>
+        <h3>Estadísticas de Punting</h3>
+        <p>
+          Yardas en Patadas de Despeje:
+          {{ selectedTeam.teamStats?.Punting?.puntYds }}
+        </p>
+        <h3>Estadísticas de Receiving</h3>
+        <p>Recepciones: {{ selectedTeam.teamStats?.Receiving?.receptions }}</p>
+        <p>TD en Recepciones: {{ selectedTeam.teamStats?.Receiving?.recTD }}</p>
+        <p>
+          Yardas en Recepciones: {{ selectedTeam.teamStats?.Receiving?.recYds }}
+        </p>
+      </div>
+      <div>
+        <h3>Estadísticas de Defense</h3>
+        <p>
+          Perdidas en Fumbles:
+          {{ selectedTeam.teamStats?.Defense?.fumblesLost }}
+        </p>
+        <p>TD en Defensa: {{ selectedTeam.teamStats?.Defense?.defTD }}</p>
+        <p>Fumbles causados: {{ selectedTeam.teamStats?.Defense?.fumbles }}</p>
+        <p>
+          Intercepciones:
+          {{ selectedTeam.teamStats?.Defense?.defensiveInterceptions }}
+        </p>
+        <p>
+          Tacleadas Totales: {{ selectedTeam.teamStats?.Defense?.totalTackles }}
+        </p>
+      </div>
+    </div>
   </div>
 </div>
-
-
-
-
