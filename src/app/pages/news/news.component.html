@@ -3,10 +3,12 @@
 <div *ngIf="!loading && news.length === 0">No hay noticias disponibles.</div>
 <div *ngIf="!loading && news.length > 0">
   <h1>Últimas Noticias de la NFL</h1>
+  <div class="image-container">
+    <img src="/Player.jpg" alt="" />
+  </div>
   <div class="news-container">
     <div *ngFor="let item of news" class="news-item">
       <h3>{{ item.title }}</h3>
     </div>
   </div>
 </div>
-
