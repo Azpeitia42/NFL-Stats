@@ -8,19 +8,17 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { UserComponent } from './pages/user/user.component';
 
 export const appRoutes: Routes = [
-  { path: '', component: NewsComponent },
+  { path: 'noticias', component: NewsComponent },
   { path: 'equipos', component: TeamsComponent },
   { path: 'equipos/jugadores/:teamAbv', component: PlayersComponent },
   { path: 'calendario', component: ScheduleComponent },
   { path: 'favoritos', component: FavoritesComponent },
   { path: 'usuario', component: UserComponent },
-  { path: '**', redirectTo: '' } // Página principal por defecto
+  { path: '**', redirectTo: 'noticias' }, // Página principal por defecto
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-

@@ -1,10 +1,18 @@
 <nav>
-  <ul>
-    <li><a routerLink="/">Noticias</a></li>
-    <li><a routerLink="/equipos">Equipos</a></li>
-    <li><a routerLink="/jugadores">Jugadores</a></li>
-    <li><a routerLink="/calendario">Calendario</a></li>
-  </ul>
+  <div class="logo">
+    <img src="/EndZone_Logo.jpg" alt="" />
+    <h1>End Zone</h1>
+  </div>
+  <div class="navbar_options">
+    <button class="button" (click)="navigateToNewsPage()">Noticias</button>
+    <button class="button" (click)="navigateToTeamsPage()">Equipos</button>
+    <button class="button" (click)="navigateToCalendarPage()">
+      Calendario
+    </button>
+    <button class="button" (click)="navigateToFavoritePage()">Favoritos</button>
+    <button class="blackButton" (click)="login()">Iniciar sesión</button>
+    <button class="blackButton" (click)="navigateToUserPage()">Usuario</button>
+  </div>
 </nav>
 <div class="content">
   <router-outlet></router-outlet>
