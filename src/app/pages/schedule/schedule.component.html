@@ -1,0 +1,35 @@
+<div *ngIf="loading">Cargando calendario...</div>
+<div *ngIf="error">Error al cargar el calendario. Intenta nuevamente.</div>
+<div *ngIf="!loading && games.length === 0">No hay juegos disponibles.</div>
+<div *ngIf="!loading && games.length > 0">
+  <h1>Calendario de la NFL</h1>
+  <div *ngFor="let week of games" class="week-section">
+    <h2>{{ week.week }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Equipo Local</th>
+          <th>Equipo Visitante</th>
+          <th>Resultado o Prediccion</th> <!-- Columna para el enlace de ESPN -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of week.games">
+          <td>{{ game.gameDate }}</td>
+          <td>{{ game.home }}</td>
+          <td>{{ game.away }}</td>
+          <td>
+            <a [href]="game.espnLink" target="_blank" *ngIf="game.espnLink">
+              Ver en ESPN
+            </a>
+            <span *ngIf="!game.espnLink">Aún no disponible</span>
+          </td> <!-- Enlace a ESPN -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,59 @@
+/* Estilos para las estadísticas del equipo */
+.team-stats {
+  margin-bottom: 30px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-stats p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.team-stats ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.team-stats ul li {
+  margin: 5px 0;
+}
+
+.players-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.player-item {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.player-item h3 {
+  color: #007bff;
+  font-size: 18px;
+}
+
+.player-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.player-item a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.player-item a:hover {
+  text-decoration: underline;
+}
+
+  

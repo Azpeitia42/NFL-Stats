@@ -1,0 +1,21 @@
+<div *ngIf="loading">Cargando jugadores...</div>
+<div *ngIf="error">Error al cargar los jugadores. Intenta nuevamente.</div>
+<div *ngIf="!loading && players.length === 0">No hay jugadores disponibles.</div>
+<div *ngIf="!loading && players.length > 0">
+  <h1>Jugadores del equipo {{ teamAbv }}</h1>
+  <div class="players-container">
+    <div *ngFor="let player of players" class="player-item">
+      <h3>{{ player.cbsLongName }}</h3>
+      <p>Posición: {{ player.pos }}</p>
+      <p>Número: {{ player.jerseyNum }}</p>
+      <a [href]="player.espnLink" target="_blank">Ver en ESPN</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
