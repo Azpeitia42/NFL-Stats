@@ -11,12 +11,21 @@
           <th>Fecha</th>
           <th>Equipo Local</th>
           <th>Equipo Visitante</th>
-          <th>Resultado o Prediccion</th> <!-- Columna para el enlace de ESPN -->
+          <th>Resultado o Prediccion</th>
+          <!-- Columna para el enlace de ESPN -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let game of week.games">
-          <td>{{ game.gameDate }}</td>
+          <td>
+            {{
+              game.gameDate.slice(0, 4) +
+                "-" +
+                game.gameDate.slice(4, 6) +
+                "-" +
+                game.gameDate.slice(6, 8)
+            }}
+          </td>
           <td>{{ game.home }}</td>
           <td>{{ game.away }}</td>
           <td>
@@ -24,12 +33,10 @@
               Ver en ESPN
             </a>
             <span *ngIf="!game.espnLink">Aún no disponible</span>
-          </td> <!-- Enlace a ESPN -->
+          </td>
+          <!-- Enlace a ESPN -->
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-
-
-

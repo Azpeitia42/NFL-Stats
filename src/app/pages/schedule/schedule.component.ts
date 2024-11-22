@@ -17,11 +17,12 @@ export class ScheduleComponent implements OnInit {
   constructor(private ScheduleService: ScheduleService) {}
 
   ngOnInit(): void {
-
     this.ScheduleService.getNFLGamesForWeek().subscribe({
       next: (data) => {
         const allGames = data?.body || []; // Ajusta esto si la estructura cambia
         this.games = this.groupGamesByWeek(allGames);
+        console.log(this.games);
+
         this.loading = false;
       },
       error: (err) => {
@@ -41,6 +42,4 @@ export class ScheduleComponent implements OnInit {
     }, {});
     return Object.entries(grouped).map(([week, games]) => ({ week, games }));
   }
-  
 }
-

@@ -1,7 +1,6 @@
 .week-section {
     margin-bottom: 24px;
     padding: 16px;
-    border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
   }
@@ -13,7 +12,6 @@
   
   h2 {
     margin-top: 0;
-    color: #007bff;
   }
   
   table {
@@ -24,9 +22,9 @@
   
   table th,
   table td {
-    border: 1px solid #ccc;
+    border: 2px solid #ffff;
     padding: 8px;
-    text-align: left;
+    text-align: center;
   }
   
   table th {
