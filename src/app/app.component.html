@@ -9,11 +9,97 @@
     <button class="button" (click)="navigateToCalendarPage()">
       Calendario
     </button>
-    <button class="button" (click)="navigateToFavoritePage()">Favoritos</button>
-    <button class="blackButton" (click)="login()">Iniciar sesión</button>
-    <button class="blackButton" (click)="navigateToUserPage()">Usuario</button>
+    <button
+      *ngIf="!showLoginButton"
+      class="button"
+      (click)="navigateToFavoritePage()"
+    >
+      Favoritos
+    </button>
+    <button
+      *ngIf="showLoginButton"
+      class="blackButton"
+      (click)="openLoginModal()"
+    >
+      Iniciar sesión
+    </button>
+    <button
+      *ngIf="!showLoginButton"
+      class="blackButton"
+      (click)="navigateToUserPage()"
+    >
+      Perfil
+    </button>
   </div>
 </nav>
 <div class="content">
   <router-outlet></router-outlet>
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeLoginModal()">&times;</span>
+      <div class="auth-content">
+        <div class="login-content">
+          <h2>Inicia Sesión</h2>
+          <div class="login-form">
+            <div class="form">
+              <p>Email</p>
+              <input
+                type="email"
+                [(ngModel)]="loginForm.email"
+                placeholder="Ingresa tu email"
+              />
+            </div>
+            <div class="form">
+              <p>Contraseña</p>
+
+              <input
+                type="password"
+                [(ngModel)]="loginForm.password"
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
+            <button (click)="login()">Iniciar sesión</button>
+          </div>
+        </div>
+        <div class="register-content">
+          <h2>Registrarse</h2>
+          <div class="register-form">
+            <div class="form">
+              <p>Nombre</p>
+              <input
+                type="text"
+                [(ngModel)]="registerForm.nombre"
+                placeholder="Ingresa tu nombre"
+              />
+            </div>
+            <div class="form">
+              <p>Apellido</p>
+              <input
+                type="text"
+                [(ngModel)]="registerForm.apellido"
+                placeholder="Ingresa tu apellido"
+              />
+            </div>
+            <div class="form">
+              <p>Email</p>
+              <input
+                type="email"
+                [(ngModel)]="registerForm.email"
+                placeholder="Ingresa tu email"
+              />
+            </div>
+            <div class="form">
+              <p>Contraseña</p>
+              <input
+                type="password"
+                [(ngModel)]="registerForm.password"
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
+            <button (click)="registerUser()">Registrarse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
