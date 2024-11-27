@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamsService } from '../../ser/teams.service';
+import { UserService } from '../../ser/user.service';
 
 @Component({
   selector: 'app-teams',
@@ -14,18 +15,34 @@ export class TeamsComponent implements OnInit {
   loading: boolean = true;
   showModal: boolean = false; // Controla la visibilidad del modal
   selectedTeam: any = null; // Equipo seleccionado para mostrar estadísticas
-
-  constructor(private TeamsService: TeamsService) {}
+  userId: any;
+  constructor(
+    private TeamsService: TeamsService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.userId = JSON.parse(String(localStorage.getItem('user')))._id;
     this.TeamsService.getNFLTeams().subscribe({
       next: (data) => {
-        this.teams = data?.body || []; // Aquí accedemos al campo "body"
+        this.teams = data?.body || [];
+        this.teams.map((team) => {}); // Aquí accedemos al campo "body"
         this.loading = false;
       },
       error: (err) => {
         console.error('Error al obtener equipos:', err);
         this.loading = false;
+      },
+    });
+  }
+
+  modifyUserFavoriteTeams(teamId: string) {
+    this.userService.modifyUserFavoriteTeams(this.userId, teamId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
       },
     });
   }
@@ -40,4 +57,3 @@ export class TeamsComponent implements OnInit {
     this.selectedTeam = null; // Limpia el equipo seleccionado
   }
 }
-

@@ -8,7 +8,6 @@ import { map } from 'rxjs';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:3000/';
-  user!: any;
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
@@ -28,8 +27,8 @@ export class AuthService {
   register(registerParams: any) {
     return this.httpClient
       .post(this.baseUrl + 'users', {
-        name: registerParams.name,
-        lastName: registerParams.lastName,
+        name: registerParams.nombre,
+        lastName: registerParams.apellido,
         email: registerParams.email,
         password: registerParams.password,
       })
