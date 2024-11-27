@@ -15,19 +15,24 @@ export class TeamsComponent implements OnInit {
   loading: boolean = true;
   showModal: boolean = false; // Controla la visibilidad del modal
   selectedTeam: any = null; // Equipo seleccionado para mostrar estadísticas
-  userId: any;
+  userFavorites: any[] = [];
+
   constructor(
     private TeamsService: TeamsService,
     private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.userId = JSON.parse(String(localStorage.getItem('user')))._id;
+    this.getUserFavorites();
     this.TeamsService.getNFLTeams().subscribe({
       next: (data) => {
-        this.teams = data?.body || [];
-        this.teams.map((team) => {}); // Aquí accedemos al campo "body"
+        this.teams = data?.body.map((team: any) => ({
+          ...team,
+          isfavorite: this.userFavorites.includes(team.teamID),
+          // isfavorite: true,
+        })); // Aquí accedemos al campo "body"
         this.loading = false;
+        console.log(this.teams);
       },
       error: (err) => {
         console.error('Error al obtener equipos:', err);
@@ -36,15 +41,31 @@ export class TeamsComponent implements OnInit {
     });
   }
 
+  getUserFavorites() {
+    this.userService
+      .getUser(JSON.parse(String(localStorage.getItem('user')))._id)
+      .subscribe({
+        next: (res: any) => {
+          this.userFavorites = res.obj._favoriteTeams;
+        },
+      });
+  }
+
   modifyUserFavoriteTeams(teamId: string) {
-    this.userService.modifyUserFavoriteTeams(this.userId, teamId).subscribe({
-      next: (res: any) => {
-        console.log(res);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.userService
+      .modifyUserFavoriteTeams(
+        JSON.parse(String(localStorage.getItem('user')))._id,
+        teamId
+      )
+      .subscribe({
+        next: (res: any) => {
+          console.log(res);
+          window.location.reload();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   openStatsModal(team: any): void {

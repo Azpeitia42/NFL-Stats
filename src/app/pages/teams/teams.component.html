@@ -21,12 +21,18 @@
       <button class="blackButton" (click)="openStatsModal(team)">
         Ver estadísticas
       </button>
+    </div>
+    <div class="favorite">
       <button
-        class="blackButton"
+        class="favoriteButton"
+        *ngIf="team.isfavorite"
         (click)="modifyUserFavoriteTeams(team.teamID)"
-      >
-        Favoritos
-      </button>
+      ></button>
+      <button
+        class="notFavoriteButton"
+        *ngIf="!team.isfavorite "
+        (click)="modifyUserFavoriteTeams(team.teamID)"
+      ></button>
     </div>
   </div>
 </div>
